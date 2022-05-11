@@ -1,0 +1,20 @@
+{
+  "name": "bot-discord",
+  "version": "1.0.0",
+  "description": "Bot for discord",
+  "main": "/src/sputnikbot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/sputnikbot.js"
+  },
+  "keywords": [
+    "discord",
+    "Javascript"
+  ],
+  "author": "bjpc <BJPC>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  }
+}
