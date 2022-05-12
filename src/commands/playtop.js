@@ -2,8 +2,8 @@ const {GuildMember} = require('discord.js');
 const {QueryType} = require('discord-player');
 
 module.exports = {
-  name: 'play',
-  description: 'Reproduce una canción en tu canal',
+  name: 'playtop',
+  description: 'Reproduce una canción antes de la siguiente en tu canal',
   options: [
     {
       name: 'consulta',
@@ -45,11 +45,11 @@ module.exports = {
 
       const queue = await player.createQueue(interaction.guild, {
         ytdlOptions: {
-				quality: "highest",
-				filter: "audioonly",
-				highWaterMark: 1 << 25,
-				dlChunkSize: 0,
-			},
+        quality: "highest",
+        filter: "audioonly",
+        highWaterMark: 1 << 25,
+        dlChunkSize: 0,
+      },
         metadata: interaction.channel,
       });
 
@@ -65,7 +65,7 @@ module.exports = {
       await interaction.followUp({
         content: `⏱ | Cargando tu ${searchResult.playlist ? 'playlist' : 'track'}...`,
       });
-      searchResult.playlist ? queue.addTracks(searchResult.tracks) : queue.addTrack(searchResult.tracks[0]);
+      searchResult.playlist ? queue.insert(searchResult.tracks, 0) : queue.insert(searchResult.tracks[0], 0);
       if (!queue.playing) await queue.play();
     } catch (error) {
       console.log(error);

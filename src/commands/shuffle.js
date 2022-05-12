@@ -1,22 +1,8 @@
 const {GuildMember} = require('discord.js');
 
 module.exports = {
-  name: 'move',
-  description: '¡Mover la posición de la canción en la cola!',
-  options: [
-    {
-      name: 'pista',
-      type: 4, // 'INTEGER' Type
-      description: 'El número de pista que desea mover',
-      required: true,
-    },
-    {
-      name: 'posicion',
-      type: 4, // 'INTEGER' Type
-      description: 'La posición a la cual se movera',
-      required: true,
-    },
-  ],
+  name: 'shuffle',
+  description: 'mezclar la cola',
   async execute(interaction, player) {
     if (!(interaction.member instanceof GuildMember) || !interaction.member.voice.channel) {
       return void interaction.reply({
@@ -38,15 +24,19 @@ module.exports = {
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
     if (!queue || !queue.playing) return void interaction.followUp({content: '❌ | ¡No se está reproduciendo música!'});
-    const queueNumbers = [interaction.options.get('pista').value - 1, interaction.options.get('posicion').value - 1];
-    if (queueNumbers[0] > queue.tracks.length || queueNumbers[1] > queue.tracks.length)
-      return void interaction.followUp({content: '❌ | ¡Número de pista mayor que la profundidad de la cola!'});
-
     try {
-      const track = queue.remove(queueNumbers[0]);
-      queue.insert(track, queueNumbers[1]);
+      queue.shuffle();
+      trimString = (str, max) => (str.length > max ? `${str.slice(0, max - 3)}...` : str);
       return void interaction.followUp({
-        content: `✅ | Movido **${track}**!`,
+        embeds: [
+          {
+            title: 'Reproduciendo ahora',
+            description: trimString(
+              `Se esta reproduciendo 🎶 | **${queue.current.title}**! \n 🎶 | ${queue}! `,
+              4095,
+            ),
+          },
+        ],
       });
     } catch (error) {
       console.log(error);
