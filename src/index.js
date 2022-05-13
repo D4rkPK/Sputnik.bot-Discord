@@ -21,35 +21,35 @@ console.log(client.commands);
 const player = new Player(client);
 
 player.on('error', (queue, error) => {
-  console.log(`[${queue.guild.name}] Error emitted from the queue: ${error.message}`);
+  console.log(`[${queue.guild.name}] Error emitido desde la cola: ${error.message}`);
 });
 
 player.on('connectionError', (queue, error) => {
-  console.log(`[${queue.guild.name}] Error emitted from the connection: ${error.message}`);
+  console.log(`[${queue.guild.name}] Error emitido desde la conexión: ${error.message}`);
 });
 
 player.on('trackStart', (queue, track) => {
-  queue.metadata.send(`▶ | Started playing: **${track.title}** in **${queue.connection.channel.name}**!`);
+  queue.metadata.send(`▶ | Se esta produciendo: **${track.title}** en **${queue.connection.channel.name}**!`);
 });
 
 player.on('trackAdd', (queue, track) => {
-  queue.metadata.send(`🎶 | Track **${track.title}** queued!`);
+  queue.metadata.send(`🎶 | Canción **${track.title}** puesto en cola!`);
 });
 
 player.on('botDisconnect', queue => {
-  queue.metadata.send('❌ | I was manually disconnected from the voice channel, clearing queue!');
+  queue.metadata.send('❌ | ¡Me desconectaron manualmente del canal de voz, borrando la cola!!');
 });
 
 player.on('channelEmpty', queue => {
-  queue.metadata.send('❌ | Nobody is in the voice channel, leaving...');
+  queue.metadata.send('❌ | Nadie está en el canal de voz, abandonando...');
 });
 
 player.on('queueEnd', queue => {
-  queue.metadata.send('✅ | Queue finished!');
+  queue.metadata.send('✅ | cola terminada!');
 });
 
 client.once('ready', async () => {
-  console.log('Ready!');
+  console.log('Listo!');
 });
 
 client.on('ready', function() {
@@ -57,11 +57,11 @@ client.on('ready', function() {
 });
 
 client.once('reconnecting', () => {
-  console.log('Reconnecting!');
+  console.log('reconectando!');
 });
 
 client.once('disconnect', () => {
-  console.log('Disconnect!');
+  console.log('Desconectado!');
 });
 
 client.on('messageCreate', async message => {
@@ -75,7 +75,7 @@ client.on('messageCreate', async message => {
         message.reply('Deployed!');
       })
       .catch(err => {
-        message.reply('Could not deploy commands! Make sure the bot has the application.commands permission!');
+        message.reply('¡No se pudieron implementar los comandos! Asegúrese de que el bot tenga el permiso application.commands!');
         console.error(err);
       });
   }
@@ -93,7 +93,7 @@ client.on('interactionCreate', async interaction => {
   } catch (error) {
     console.error(error);
     interaction.followUp({
-      content: 'There was an error trying to execute that command!',
+      content: 'Hubo un error al intentar ejecutar ese comando!',
     });
   }
 });

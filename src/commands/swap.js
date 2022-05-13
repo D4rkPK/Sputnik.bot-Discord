@@ -37,7 +37,7 @@ module.exports = {
 
     await interaction.deferReply();
     const queue = player.getQueue(interaction.guildId);
-    if (!queue || !queue.playing) return void interaction.followUp({content: '❌ | No music is being played!'});
+    if (!queue || !queue.playing) return void interaction.followUp({content: '❌ | ¡No se está reproduciendo música!'});
     const queueNumbers = [interaction.options.get('track1').value - 1, interaction.options.get('track2').value - 1];
     // Sort so the lowest number is first for swap logic to work
     queueNumbers.sort(function (a, b) {
