@@ -63,7 +63,7 @@ module.exports = {
       }
 
       await interaction.followUp({
-        content: `⏱ | Cargando tu ${searchResult.playlist ? 'playlist' : 'track'}...`,
+        content: `⏱ | Cargando tu ${searchResult.playlist ? 'playlist' : 'Canción'}...`,
       });
       searchResult.playlist ? queue.addTracks(searchResult.tracks) : queue.addTrack(searchResult.tracks[0]);
       if (!queue.playing) await queue.play();
