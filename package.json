@@ -5,8 +5,7 @@
   "main": "/src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js",
-    "build": "node ./src/index.js"
+    "start": "node ./src/index.js"
   },
   "keywords": [
     "discord",
@@ -15,11 +14,13 @@
   "author": "bjpc <BJPC>",
   "license": "MIT",
   "dependencies": {
+    "@discordjs/opus": "^0.7.0",
     "discord-player": "^5.2.2",
     "discord.js": "^13.7.0",
     "dotenv": "^16.0.1",
-    "got": "^12.0.4",
-    "node-fetch": "^3.2.4",
-    "weather-js": "^2.0.0"
+    "ffmpeg": "^0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "weather-js": "^2.0.0",
+    "ytdl-core": "^4.11.0"
   }
 }

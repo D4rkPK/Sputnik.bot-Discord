@@ -2,7 +2,7 @@ const {GuildMember} = require('discord.js');
 
 module.exports = {
   name: 'swap',
-  description: 'intercambiar posiciones de canciones en la cola',
+  description: 'Intercambiar posiciones de canciones en la cola',
   options: [
     {
       name: 'track1',
