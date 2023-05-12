@@ -31,10 +31,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/D4rkPK/Bot-Sputnik_Discord.git"
+    "url": "git+https://github.com/D4rkPK/Sputnik.bot-Discord.git"
   },
   "bugs": {
-    "url": "https://github.com/D4rkPK/Bot-Sputnik_Discord/issues"
+    "url": "https://github.com/D4rkPK/Sputnik.bot-Discord/issues"
   },
-  "homepage": "https://github.com/D4rkPK/Bot-Sputnik_Discord#readme"
+  "homepage": "https://github.com/D4rkPK/Sputnik.bot-Discord#readme"
 }
