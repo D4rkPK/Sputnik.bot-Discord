@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'nsfw',
     description: '¡ADVERTENCIA! contenido nsfw solo para mayores de 18 años',
@@ -14,7 +14,7 @@ module.exports = {
             'https://i.imgflip.com/2yxga6.gif',
             ]
         let index = (Math.floor(Math.random() * Math.floor(egif.length)))
-        const embed = new Discord.MessageEmbed()
+        const embed = new EmbedBuilder()
         .setColor('#ff0000')
         .setImage(egif[index])
         interaction.reply({ embeds: [embed] })

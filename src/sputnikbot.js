@@ -1,7 +1,3 @@
-
-
-
-
 client.on("messageCreate", function (msg) {
   if (msg.content === "sput") {
     msg.reply("HOLA");

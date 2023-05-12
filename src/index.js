@@ -1,12 +1,13 @@
 require("dotenv").config();
 const fs = require('fs');
-const Discord = require('discord.js');
+const { Collection } = require('discord.js');
 const Client = require('./client/Client');
 const config = require('../config.json');
 const {Player} = require('discord-player');
+const keepAlive = require('./server');
 
 const client = new Client();
-client.commands = new Discord.Collection();
+client.commands = new Collection() 
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 
@@ -65,9 +66,9 @@ client.once('disconnect', () => {
 
 client.on('messageCreate', async message => {
   if (message.author.bot || !message.guild) return;
-  if (!client.application?.owner) await client.application?.fetch();
+  if (!client.application.owner) await client.application.fetch();
 
-  if (message.content === '!deploy' && message.author.id === client.application?.owner?.id) {
+  if (message.content === '!deploy' && message.author.id === client.application.owner.id) {
     await message.guild.commands
       .set(client.commands)
       .then(() => {
@@ -75,7 +76,7 @@ client.on('messageCreate', async message => {
       })
       .catch(err => {
         message.reply('¡No se pudieron implementar los comandos! Asegúrese de que el bot tenga el permiso application.commands!');
-        console.error(err);
+        console.error('ERROR:', err);
       });
   }
 });
@@ -97,4 +98,5 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
+keepAlive();
 client.login(process.env.DISCORD_TOKEN);

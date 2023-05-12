@@ -1,5 +1,5 @@
 const weather = require('weather-js')
-const discord = require('discord.js')
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'weather',
@@ -16,7 +16,7 @@ module.exports = {
            const location = interaction.options.getString("location")
            weather.find({search: location, degreeType: 'C'}, function(err, result) {
             try {
-            let embed = new discord.MessageEmbed()
+            let embed = new EmbedBuilder()
             .setTitle(`CLIMA - ${result[0].location.name}`)
             .setColor("#00FFFF")
             .addField("Temperatura", `${result[0].current.temperature} Celsius`, true)
